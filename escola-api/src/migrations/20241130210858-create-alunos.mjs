@@ -24,34 +24,15 @@ class Aluno extends Model {
       },
       idade: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-        validate: {
-          isInt: {
-            msg: 'A idade deve ser um número inteiro'
-          },
-          min: {
-            args: [1],
-            msg: 'A idade deve ser maior que zero'
-          }
-        }
+        allowNull: false
       },
       peso: {
         type: Sequelize.FLOAT,
-        allowNull: true,
-        validate: {
-          isFloat: {
-            msg: 'O peso deve ser um número'
-          }
-        }
+        allowNull: true
       },
       altura: {
         type: Sequelize.FLOAT,
-        allowNull: true,
-        validate: {
-          isFloat: {
-            msg: 'A altura deve ser um número'
-          }
-        }
+        allowNull: true
       },
       created_at: {
         type: Sequelize.DATE,
@@ -71,7 +52,7 @@ class Aluno extends Model {
   }
 
   static associate(models) {
-    // Definir associações se necessário
+    // Define associations if necessary
   }
 }
 

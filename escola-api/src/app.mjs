@@ -1,27 +1,18 @@
-import express from 'express'; 
-import routes from './routes/index.mjs'; 
-
-import swaggerUi from 'swagger-ui-express'; 
-import swaggerJsDoc from 'swagger-jsdoc'; 
-
-const swaggerOptions = {
-  swaggerDefinition: {
-    info: {
-      title: 'Escola API',
-      version: '1.0.0',
-      description: 'API para gestão escolar',
-    },
-    servers: [{ url: 'http://localhost:3000' }],
-  },
-  apis: ['./src/routes/*.js'],
-};
+import express from 'express';
+import routes from './routes/index.mjs';
+import sequelize from './database/index.mjs';
 
 const app = express();
 
 app.use(express.json());
 app.use('/api', routes);
 
-const swaggerDocs = swaggerJsDoc(swaggerOptions);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+sequelize.sync()
+  .then(() => {
+    console.log('Database connected');
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });
 
-export default app; 
+export default app;
