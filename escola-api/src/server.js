@@ -1,6 +1,5 @@
-const app = require('./app');
-const port = process.env.PORT || 3000;
+import app from './app.mjs';
 
-app.listen(port, () => {
-    console.log(`Servidor rodando em http://localhost:${port}`);
-});
+app.listen(() => {
+    console.log("Servidor rodando em http://localhost:3000");
+})
