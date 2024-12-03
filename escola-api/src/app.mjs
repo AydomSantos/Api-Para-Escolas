@@ -1,6 +1,20 @@
+// Adcionando a biblioteca Express
+
 import express from 'express';
+
+// ================================
+
+// Importando as Rotas da Aplicação
+
 import routes from './routes/index.mjs';
+
+// =================================================
+
+// importando o database da aplicação
+
 import sequelize from './database/index.mjs';
+
+// =================================================
 
 const app = express();
 

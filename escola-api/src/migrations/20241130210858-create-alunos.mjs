@@ -1,3 +1,9 @@
+
+/* 
+Aqui ao ser execultado ele fara uma tabale no banco de dados com as configurações que voçê adcionar
+*/
+
+
 import Sequelize, { Model } from 'sequelize';
 
 class Aluno extends Model {
