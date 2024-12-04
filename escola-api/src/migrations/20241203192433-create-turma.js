@@ -1,50 +1,49 @@
-"use strict";
+'use strict';
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Turmas", {
-      i_id_turmas: {
-        type: Sequelize.INTEGER,
+    await queryInterface.createTable('turmas', {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
+        type: Sequelize.INTEGER
       },
-      s_nome_turmas: {
+      nome: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: false
       },
-      i_ano_turmas: {
+      ano: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: false
       },
-      i_periodo_turmas: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
+      serie: {
+        type: Sequelize.STRING,
+        allowNull: false
       },
-      i_id_professores: {
+      curso_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         references: {
-          model: "professores", // Nome da tabela referenciada
-          key: "i_id_professores", // Nome da coluna referenciada
+          model: 'cursos', 
+          key: 'id'
         },
-        onDelete: "CASCADE", // Ação ao deletar o registro relacionado
-        onUpdate: "CASCADE", // Ação ao atualizar o registro relacionado
-      },
-      createdAt: {
-        type: Sequelize.DATE,
         allowNull: false,
-        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
-      updatedAt: {
-        type: Sequelize.DATE,
+      created_at: {
         allowNull: false,
-        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"),
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       },
+      updated_at: {
+        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+      }
     });
   },
-
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Turmas");
-  },
+    await queryInterface.dropTable('turmas');
+  }
 };
