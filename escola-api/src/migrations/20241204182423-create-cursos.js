@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('turmas', {
+    await queryInterface.createTable('cursos', {  
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -11,32 +11,22 @@ module.exports = {
       },
       nome: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false  
       },
-      ano: {
-        type: Sequelize.INTEGER,
-        allowNull: false
+      data_inicio: { 
+        type: Sequelize.DATE,
+        allowNull: false  
       },
-      serie: {
-        type: Sequelize.STRING,
-        allowNull: false
+      data_fim: {  
+        type: Sequelize.DATE,
+        allowNull: false  
       },
-      curso_id: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'cursos', 
-          key: 'id'
-        },
-        allowNull: false,
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
-      },
-      created_at: {
+      created_at: {  
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       },
-      updated_at: {
+      updated_at: {  
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
@@ -44,6 +34,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('turmas');
+    await queryInterface.dropTable('cursos');  
   }
 };

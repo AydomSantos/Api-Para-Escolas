@@ -65,7 +65,7 @@ class Professor extends Model {
 
     static associate(models){
         // Aqui você pode definir associações com outras tabelas, se necessário
-        // Exemplo: Professores.hasMany(models.Turmas); 
+         Professores.hasMany(models.Turmas); 
     }
 }
 

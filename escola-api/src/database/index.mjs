@@ -1,23 +1,23 @@
 import Sequelize from 'sequelize';
-
-// Importando os modelos
-
 import Aluno from '../models/Aluno.mjs';
 import Professor from '../models/Professor.mjs';
 import Turma from '../models/Turma.mjs';
-
-// Inicializando o Sequelize com SQLite
+import Curso from '../models/Cursos.mjs';
+import Matricula from '../models/Matricula.mjs';
 
 const sequelize = new Sequelize({
   dialect: 'sqlite',
-  storage: './db.sqlite'
+  storage: './db.sqlite',
+  define: {
+    timestamps: true,
+    underscored: true,
+    underscoredAll: true,
+    createdAt: 'created_at',
+    updatedAt: 'updated_at'
+  }
 });
 
-// Associando os modelos aos models do Sequelize
-
-const models = [Aluno , Professor, Turma];
-
-// Inicializando os models com os dados do Sequelize
+const models = [Aluno, Professor, Turma, Curso, Matricula];
 
 models.forEach(model => model.init(sequelize));
 models.forEach(model => model.associate && model.associate(sequelize.models));

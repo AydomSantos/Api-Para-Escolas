@@ -1,19 +1,13 @@
-
-/* 
-Aqui ao ser execultado ele fara uma tabale no banco de dados com as configurações que voçê adcionar
-*/
-
-
-import Sequelize, { Model } from 'sequelize';
-
-class Aluno extends Model {
-  static init(sequelize) {
-    super.init({
+'use strict';
+/** @type {import('sequelize-cli').Migration} */
+module.exports = {
+  async up(queryInterface, Sequelize) {
+    await queryInterface.createTable('alunos', {
       id: {
-        type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
-        primaryKey: true
+        primaryKey: true,
+        type: Sequelize.INTEGER
       },
       nome: {
         type: Sequelize.STRING,
@@ -41,25 +35,18 @@ class Aluno extends Model {
         allowNull: true
       },
       created_at: {
+        allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW,
-        allowNull: false
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       },
       updated_at: {
+        allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW,
-        allowNull: false
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
-    }, {
-      sequelize,
-      tableName: 'alunos'
     });
-    return this;
+  },
+  async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable('alunos');
   }
-
-  static associate(models) {
-    // Define associations if necessary
-  }
-}
-
-export default Aluno;
+};
