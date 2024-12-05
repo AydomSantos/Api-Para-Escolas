@@ -5,6 +5,7 @@ import Turma from '../models/Turma.mjs';
 import Curso from '../models/Cursos.mjs';
 import Matricula from '../models/Matricula.mjs';
 
+// Inicializando a conexão com o banco de dados
 const sequelize = new Sequelize({
   dialect: 'sqlite',
   storage: './db.sqlite',
@@ -17,9 +18,24 @@ const sequelize = new Sequelize({
   }
 });
 
+// Lista de modelos
 const models = [Aluno, Professor, Turma, Curso, Matricula];
 
+// Inicializando os modelos
 models.forEach(model => model.init(sequelize));
-models.forEach(model => model.associate && model.associate(sequelize.models));
+
+// Associando os modelos (garantindo que as associações sejam feitas após a inicialização)
+models.forEach(model => {
+  if (model.associate) {
+    model.associate(sequelize.models);
+  }
+});
+
+// Sincronizando o banco de dados
+sequelize.sync().then(() => {
+  console.log('Banco de dados sincronizado');
+}).catch(error => {
+  console.error('Erro ao sincronizar o banco de dados:', error);
+});
 
 export default sequelize;
