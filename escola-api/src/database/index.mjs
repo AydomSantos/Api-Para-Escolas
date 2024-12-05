@@ -4,6 +4,7 @@ import Professor from '../models/Professor.mjs';
 import Turma from '../models/Turma.mjs';
 import Curso from '../models/Cursos.mjs';
 import Matricula from '../models/Matricula.mjs';
+import Nota from '../models/Nota.mjs';
 
 // Inicializando a conexão com o banco de dados
 const sequelize = new Sequelize({
@@ -15,11 +16,12 @@ const sequelize = new Sequelize({
     underscoredAll: true,
     createdAt: 'created_at',
     updatedAt: 'updated_at'
-  }
+  },
+  logging: console.log // Habilita logging para ver consultas SQL
 });
 
 // Lista de modelos
-const models = [Aluno, Professor, Turma, Curso, Matricula];
+const models = [Aluno, Professor, Turma, Curso, Matricula, Nota];
 
 // Inicializando os modelos
 models.forEach(model => model.init(sequelize));
@@ -32,10 +34,21 @@ models.forEach(model => {
 });
 
 // Sincronizando o banco de dados
-sequelize.sync().then(() => {
-  console.log('Banco de dados sincronizado');
-}).catch(error => {
-  console.error('Erro ao sincronizar o banco de dados:', error);
-});
+sequelize.sync()
+  .then(() => {
+    console.log('Banco de dados sincronizado');
+  })
+  .catch(error => {
+    console.error('Erro ao sincronizar o banco de dados:', error);
+  });
+
+// Gerenciando erros de conexão
+sequelize.authenticate()
+  .then(() => {
+    console.log('Conexão estabelecida com sucesso.');
+  })
+  .catch(error => {
+    console.error('Erro ao conectar ao banco de dados:', error);
+  });
 
 export default sequelize;

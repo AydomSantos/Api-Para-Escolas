@@ -1,6 +1,6 @@
 
 import {Router} from 'express';
-import AlunoCrontroller from '../controllers/AlunoCrontroller.mjs';
+import AlunoCrontroller from '../controllers/AlunoController.mjs';
 
 const router = Router();
 
