@@ -10,6 +10,7 @@ import turmaRouter from './turma.mjs';
 import CursoRouter from './curso.mjs';
 import MatriculaRouter from './matricula.mjs';
 import NotaRouter from './notas.mjs';
+import Frequencia from './frequencia.mjs';
 
 
 // Criar a rota raíz para o Express
@@ -22,5 +23,6 @@ router.use('/turmas', turmaRouter);
 router.use('/cursos', CursoRouter);
 router.use('/matricula', MatriculaRouter);
 router.use('/nota', NotaRouter);
+router.use('/frequencia', Frequencia);
 
 export default router;

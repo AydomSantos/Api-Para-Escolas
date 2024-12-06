@@ -5,7 +5,7 @@ import Turma from '../models/Turma.mjs';
 import Curso from '../models/Cursos.mjs';
 import Matricula from '../models/Matricula.mjs';
 import Nota from '../models/Nota.mjs';
-
+import Frequencia from '../models/Frequencia.mjs';
 // Inicializando a conexão com o banco de dados
 const sequelize = new Sequelize({
   dialect: 'sqlite',
@@ -21,7 +21,15 @@ const sequelize = new Sequelize({
 });
 
 // Lista de modelos
-const models = [Aluno, Professor, Turma, Curso, Matricula, Nota];
+const models = [
+  Aluno, 
+  Professor, 
+  Turma, 
+  Curso, 
+  Matricula, 
+  Nota, 
+  Frequencia
+];
 
 // Inicializando os modelos
 models.forEach(model => model.init(sequelize));
